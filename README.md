@@ -7,7 +7,7 @@ The C++ implementation provides a graphical interface for the PRESENT cipher, le
 
 ## GUI Usage
 
-The GUI allows users to interactively input data (HEX only), encrypt or decrypt text blocks, and manage the encryption key.
+The GUI allows users to interactively input data (alphanumeric), encrypt or decrypt text blocks, and manage the encryption key.
 
 **Features:**
 
@@ -24,7 +24,7 @@ The GUI allows users to interactively input data (HEX only), encrypt or decrypt 
 2. Type hexadecimal input in the input field.  
 3. Press **Drop Input** to create a falling text block.  
 4. Click **<- Encrypt** to encrypt or **<- Decrypt** to decrypt the displayed blocks.  
-5. Click **Change Key** to enter a new key; type up to 16 hex characters, then press Enter to apply.
+5. Click **Change Key** to enter a new key; type up the correspondent alphanumeric values, then press Enter to apply.
 
 ## Library Usage
 
