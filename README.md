@@ -7,7 +7,7 @@ The C++ implementation provides a graphical interface for the PRESENT cipher, le
 
 ## GUI Usage
 
-The GUI allows users to interactively input data, encrypt or decrypt text blocks, and manage the encryption key.
+The GUI allows users to interactively input data (HEX only), encrypt or decrypt text blocks, and manage the encryption key.
 
 **Features:**
 
