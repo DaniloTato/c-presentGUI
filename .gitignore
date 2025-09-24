@@ -1,0 +1,13 @@
+build
+*.o
+*.so
+*.dSYM
+*.exe
+*.out
+*.app
+*.log
+*.tmp
+*.DS_Store
+.vscode/
+.idea/
+.clangd/
