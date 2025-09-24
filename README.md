@@ -1,4 +1,4 @@
-# Implementation in C++
+# C-PRESENT GUI
 
 The C++ implementation provides a graphical interface for the PRESENT cipher, leveraging SFML for rendering, and integrates the `c-present` library for encryption and decryption operations.
 
