@@ -6,7 +6,7 @@
 #include <string>
 
 
-#include "../c-present/include/cpresent/cpresent_wrapper.h"
+#include <cpresent/cpresent_wrapper.h>
 
 std::string toHex(block_t value);
 

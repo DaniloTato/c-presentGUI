@@ -1,5 +1,6 @@
 CompileFlags:
   Add: [
-    -I./c-present/include,
-    -I/opt/homebrew/Cellar/sfml/2.6.1/include
+    -I/Users/danilo_tato/coding/c++/c_present_gui/c-present/include,
+    -I/Users/danilo_tato/coding/c++/c_present_gui/sfml/include,
+    -I/Users/danilo_tato/coding/c++/c_present_gui
   ]

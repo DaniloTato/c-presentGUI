@@ -1,9 +1,8 @@
 #include <iostream>
 #include <sstream>
-#include "../include/utils.hpp"
-#include "../sfml/include/SFML/Graphics.hpp"
-#include "../sfml/include/SFML/Window/Keyboard.hpp"
-#include "../c-present/include/cpresent/cpresent_wrapper.h"
+#include <include/utils.hpp>
+#include <SFML/Graphics.hpp>
+#include <cpresent/cpresent_wrapper.h>
 
 #ifndef PROJECT_ROOT
 #define PROJECT_ROOT "/"
