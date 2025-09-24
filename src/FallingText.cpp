@@ -35,7 +35,7 @@ void FallingText::nextLevel(){
     current_level++; 
     floor_position += 100.0f;
     if(current_level == 2){
-        floor_position = 550.f;
+        floor_position = 530.f;
     }
 }
 

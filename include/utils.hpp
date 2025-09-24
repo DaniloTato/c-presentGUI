@@ -10,4 +10,8 @@
 
 std::string blockToHexString(block_t value);
 block_t stringToBlock(const std::string& hexStr);
+std::string keyToHexString(const cp_key_t& key);
+cp_key_t stringToKey(const std::string& s);
+void updateKey(cp_key_t& currentKey, std::string newKey);
+
 
