@@ -27,6 +27,7 @@ BREW_SFML := ./sfml
 CXXFLAGS := -Wall -Wextra -std=$(CXXSTD) \
             -I$(include_dir) \
             -I$(BREW_SFML)/include \
+			-DPROJECT_ROOT=\"$(PWD)\" \
 
 LIB_SFML := -L$(BREW_SFML)/lib -lsfml-graphics -lsfml-window -lsfml-system -lcpresent
 

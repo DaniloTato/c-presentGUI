@@ -33,7 +33,7 @@ g++ -std=c++17 -Wall -Wextra \
     -Isrc -Iinclude -Isfml/include \
     src/*.cpp \
     -Lsfml/lib -lsfml-graphics -lsfml-window -lsfml-system -lcpresent \
-    -o build/a
+    -o build/a -DPROJECT_ROOT=\"$(PWD)\"
 
 ```
 

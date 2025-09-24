@@ -5,13 +5,17 @@
 #include "../sfml/include/SFML/Window/Keyboard.hpp"
 #include "../c-present/include/cpresent/cpresent_wrapper.h"
 
+#ifndef PROJECT_ROOT
+#define PROJECT_ROOT "/"
+#endif
+
 int main() {
 
     set_key({0x00000000, 0x0000000000000000});
 
     sf::RenderWindow window(sf::VideoMode(900, 600), "c-present");
     sf::Font font;
-    if (!font.loadFromFile("/System/Library/Fonts/Supplemental/Arial.ttf")) {
+    if (!font.loadFromFile(PROJECT_ROOT "/fonts/Arial.ttf")) {
         std::cerr << "Error loading font\n";
         return -1;
     }
