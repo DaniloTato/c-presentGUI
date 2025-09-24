@@ -12,9 +12,9 @@ std::string blockToString(block_t value) {
 
 block_t stringToBlock(const std::string& s) {
     block_t value = 0;
-    for (size_t i = 0; i < s.size() && i < 8; ++i) { // 8 chars máximo por bloque
+    for (size_t i = 0; i < s.size() && i < 8; ++i) {
         value <<= 8;
-        value |= static_cast<uint8_t>(s[i]); // convierte char a byte
+        value |= static_cast<uint8_t>(s[i]);
     }
     return value;
 }
