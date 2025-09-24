@@ -76,19 +76,23 @@ int main() {
             if (event.type == sf::Event::TextEntered) {
                 blinkTimer = 0.0f;
                 showKeyText = true;
-                if (event.text.unicode == '\b') {
+
+                if (event.text.unicode == '\b') {  // handle backspace
                     if (changingKey) {
                         if (!newKeyInput.empty()) newKeyInput.pop_back();
                     } else if (!inputText.empty()) {
                         inputText.pop_back();
                     }
-                } else if (std::isxdigit(event.text.unicode)) {
+                } 
+                else if (std::isalnum(event.text.unicode)) {  // allow alphanumeric
+                    char c = static_cast<char>(event.text.unicode);
                     if (changingKey) {
-                        newKeyInput += static_cast<char>(std::toupper(event.text.unicode));
+                        newKeyInput += c;
                     } else {
-                        inputText += static_cast<char>(std::toupper(event.text.unicode));
+                        inputText += c;
                     }
-                } else if (event.text.unicode == '\r' || event.text.unicode == '\n') {
+                } 
+                else if (event.text.unicode == '\r' || event.text.unicode == '\n') {  // Enter
                     if (changingKey) {
                         updateKey(currentKey, newKeyInput);
                         changingKey = false;
@@ -110,7 +114,7 @@ int main() {
                 for (auto& fallingText : fallingTextVector) {
                     if(fallingText->getLevel() == 0){
                         fallingText->setValue(encrypt_block(fallingText->getValue()));
-                        fallingText->setLabel(blockToHexString(fallingText->getValue()));
+                        fallingText->setLabel(blockToString(fallingText->getValue()));
                         fallingText->nextLevel();
                     }
                 }
@@ -120,7 +124,7 @@ int main() {
                 for (auto& fallingText : fallingTextVector) {
                     if(fallingText->getLevel() == 1){
                         fallingText->setValue(decrypt_block(fallingText->getValue()));
-                        fallingText->setLabel(blockToHexString(fallingText->getValue()));
+                        fallingText->setLabel(blockToString(fallingText->getValue()));
                         fallingText->nextLevel();
                     }
                 }

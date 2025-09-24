@@ -5,7 +5,7 @@ FallingText::FallingText(const sf::Font& font, block_t value)
 : value(value)
 {
     text.setFont(font);
-    text.setString(blockToHexString(value));
+    text.setString(blockToString(value));
     text.setCharacterSize(24);
     text.setFillColor(sf::Color::White);
     velocity = {0, 0};
