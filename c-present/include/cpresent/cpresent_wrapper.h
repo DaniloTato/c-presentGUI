@@ -1,8 +1,11 @@
-#ifndef CPRESENT_WRAPPER_H
-#define CPRESENT_WRAPPER_H
+#pragma once
 
+#ifdef __cplusplus
 extern "C" {
-#include "cpresent.h"
-}
+#endif
 
+#include "cpresent.h"   // header de la lib en C
+
+#ifdef __cplusplus
+}
 #endif

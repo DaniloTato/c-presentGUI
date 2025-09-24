@@ -11,6 +11,7 @@
 int main() {
 
     set_key({0x00000000, 0x0000000000000000});
+    std::cout << "Key set\n";
 
     sf::RenderWindow window(sf::VideoMode(900, 600), "c-present");
     sf::Font font;

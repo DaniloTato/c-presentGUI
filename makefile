@@ -7,31 +7,40 @@ source_dir  := src
 include_dir := include
 build_dir   := build
 
+external_dir := c-present
+external_src := $(shell find $(external_dir)/src -name '*.c' -o -name '*.cpp')
+external_inc := $(external_dir)/include
+
 # ------------------------
 # Sources and objects
 # ------------------------
-sources := $(shell find $(source_dir) -name '*.cpp')
-headers := $(shell find $(include_dir) -name '*.hpp')
-objs    := $(patsubst $(source_dir)/%.cpp,$(build_dir)/%.o,$(sources))
+sources := $(shell find $(source_dir) -name '*.cpp') $(external_src)
+headers := $(shell find $(include_dir) -name '*.hpp') \
+           $(shell find $(external_inc) -name '*.h' -o -name '*.hpp')
+
+objs := $(patsubst %.cpp,$(build_dir)/%.o,$(filter %.cpp,$(sources))) \
+        $(patsubst %.c,$(build_dir)/%.o,$(filter %.c,$(sources)))
 
 # ------------------------
 # Compiler and flags
 # ------------------------
 CXX    := g++
+CC     := gcc
 CXXSTD := c++17
 
-# Detect Homebrew installations
 BREW_SFML := ./sfml
 
-# Compiler flags
 CXXFLAGS := -Wall -Wextra -std=$(CXXSTD) \
             -I$(include_dir) \
             -I$(BREW_SFML)/include \
-			-I$(PWD)/c-present/include \
-			-I$(PWD) \
-			-DPROJECT_ROOT=\"$(PWD)\" \
+            -I$(external_inc) \
+            -I$(PWD) \
+            -DPROJECT_ROOT=\"$(PWD)\"
 
-LIB_SFML := -L$(BREW_SFML)/lib -lsfml-graphics -lsfml-window -lsfml-system -lcpresent
+CFLAGS := -Wall -Wextra -std=c11 \
+          -I$(external_inc)
+
+LIB_SFML := -L$(BREW_SFML)/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 ifeq ($(BUILD),release)
 	target += _release
@@ -41,7 +50,6 @@ else
 endif
 
 CLANGDB := compile_commands.json
-
 MAKEFLAGS += --no-print-directory
 
 # ------------------------
@@ -75,11 +83,17 @@ $(build_dir)/$(target): $(objs) | $(build_dir)
 	@echo "Linking $@"
 	@$(CXX) $^ $(CXXFLAGS) $(LIB_SFML) -o $@
 
-# Compile each source file into build/ directory
-$(build_dir)/%.o: $(source_dir)/%.cpp | $(build_dir)
+# Compile C++ sources
+$(build_dir)/%.o: %.cpp | $(build_dir)
 	@mkdir -p $(dir $@)
-	@echo "Compiling $<"
+	@echo "Compiling C++ $<"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Compile C sources
+$(build_dir)/%.o: %.c | $(build_dir)
+	@mkdir -p $(dir $@)
+	@echo "Compiling C $<"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Generate compile_commands.json with bear
 $(CLANGDB):
