@@ -32,19 +32,21 @@ This will:
 If you prefer manual compilation, first compile the PRESENT library (`c-present`) as a static library:
 
 ```bash
-# Compile PRESENT library sources
-g++ -std=c++17 -Wall -Wextra -I c-present/include -c c-present/src/*.c
+gcc -std=c11 -Wall -Wextra -I./c-present/include -c c-present/src/*.c
 ar rcs libc_present.a *.o
+rm *.o
 ```
 
 Then compile the GUI sources and link with SFML and the PRESENT library:
 
 ```bash
 g++ -std=c++17 -Wall -Wextra \
-    -Isrc -Iinclude -I./sfml/include -Ic-present/include \
+    -I./sfml/include -I./c-present/include -I. \
     src/*.cpp \
-    -L./sfml/lib -L. -lsfml-graphics -lsfml-window -lsfml-system -lc_present \
-    -o build/a -DPROJECT_ROOT="$(PWD)"
+    ./libc_present.a \
+    -L./sfml/lib -lsfml-graphics -lsfml-window -lsfml-system \
+    -o build/a \
+    -DPROJECT_ROOT="\"$(PWD)\""
 ```
 
 Make sure to adjust -I and -L paths if SFML is installed elsewhere, and ensure libc_present.a is in the current directory or library path.
